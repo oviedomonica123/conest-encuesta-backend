@@ -1,38 +1,38 @@
 FORMAT: 1A
 HOST: http://www.google.com
 
-# Encuesta Conest
-Notes API is a *short texts saving* service similar to its physical paper presence on your table.
+# API Consulta Conest
+API del sistema de *Consulta Conest*.
 
-# Group Notes
-Notes related resources of the **Notes API**
+# Group Instrumentos
+Recursos asociados a los **Instrumentos** de consulta
 
-## Notes Collection [/notes]
-### List all Notes [GET]
+## Colección de Instrumentos [/instrumentos]
+### Listar todos los Instrumentos [GET]
 + Response 200 (application/json)
 
         [{
-          "id": 1, "title": "Jogging in park"
+          "id": 1, "nombre": "Consulta de teórico-prácticas", "descripcion": "Consulta estudiantil sobre el desempeño docente en materias teórico-prácticas", "created_at": "2014-07-01 09:00:00",  "updated_at": "2014-07-01 09:00:00"
         }, {
-          "id": 2, "title": "Pick-up posters from post-office"
+          "id": 2, "nombre": "Consulta de teóricas", "descripcion": "Consulta estudiantil sobre el desempeño docente en materias teóricas", "created_at": "2014-07-01 09:30:00",  "updated_at": "2014-07-01 09:00:00"
         }]
 
-### Create a Note [POST]
+### Crear un Instrumento [POST]
 + Request (application/json)
 
-        { "title": "Buy cheese and bread for breakfast." }
+        { "nombre": "Consulta de Laboratorio", "descripcion": "Consulta estudiantil sobre el desempeño docente en materias de Laboratorios Generales" }
 
 + Response 201 (application/json)
 
-        { "id": 3, "title": "Buy cheese and bread for breakfast." }
+        { "id": 3, "nombre": "Consulta de Laboratorio", "descripcion": "Consulta estudiantil sobre el desempeño docente en materias cde Laboratorios Generales" }
 
-## Note [/notes/{id}]
-A single Note object with all its details
+## Instrumento [/instrumentos/{id}]
+Un objeto Instrumento en particular con todos sus detalles
 
 + Parameters
-    + id (required, number, `1`) ... Numeric `id` of the Note to perform action with. Has example value.
+    + id (required, number, `1`) ... `id` numérico del Instrumento. Tiene un valor de ejemplo.
 
-### Retrieve a Note [GET]
+### Obtener un Instrumento [GET]
 + Response 200 (application/json)
 
     + Header
@@ -41,7 +41,63 @@ A single Note object with all its details
 
     + Body
 
-            { "id": 2, "title": "Pick-up posters from post-office" }
+            { "id": 1, "nombre": "Consulta de teórico prácticas", "descripcion": "Consulta estudiantil sobre el desempeño docente en materias teórico-prácticas", "created_at": "2014-07-01 09:00:00",  "updated_at": "2014-07-01 09:00:00" }
 
-### Remove a Note [DELETE]
+### Eliminar un Instrumento [DELETE]
 + Response 204
+
+
+
+
+
+
+
+
+
+
+
+
+# Group Bloques
+Recursos asociados a los **Bloques** que agrupan **conjuntos de preguntas** de un instrumento
+
+## Colección de Bloques de un Instrumento [/instrumento/{id}/bloques]
+### Listar todos los Bloques de un Instrumento [GET]
++ Response 200 (application/json)
+
+        [{
+          "id": 1, "nombre": "Sobre el docente", "descripcion": "Aspectos asociados al desempeño del docente", "created_at": "2014-07-01 09:00:00",  "updated_at": "2014-07-01 09:00:00"
+        }, {
+          "id": 2, "nombre": "Sobre la asignatura", "descripcion": "Aspectos asociados al contenido y planificación de la asignatura", instrumento_id:"1", "created_at": "2014-07-01 09:30:00",  "updated_at": "2014-07-01 09:00:00"
+        }]
+
+## Colección de Bloques de un Instrumento [/bloques]
+### Crear un Instrumento [POST]
++ Request (application/json)
+
+        { "nombre": "Sobre el laboratorio", "descripcion": "Aspectos asociados a las actividades docentes de laboratorio", instrumento_id:"1" }
+
++ Response 201 (application/json)
+
+        { "id": 3, "nombre": "Sobre el laboratorio", "descripcion": "Aspectos asociados a las actividades docentes de laboratorio", instrumento: { id:"1", nombre:"Consulta de teórico-prácticas" } }
+
+## Instrumento [/bloques/{id}]
+Un bloque Instrumento en particular con todos sus detalles
+
++ Parameters
+    + id (required, number, `1`) ... `id` numérico del Bloque. Tiene un valor de ejemplo.
+
+### Obtener un Instrumento [GET]
++ Response 200 (application/json)
+
+    + Header
+
+            X-My-Header: The Value
+
+    + Body
+
+            { "id": 1, "nombre": "Sobre el docente", "descripcion": "Aspectos asociados al desempeño del docente", instrumento: { id:"1", nombre:"Consulta de teórico-prácticas" }, "created_at": "2014-07-01 09:00:00",  "updated_at": "2014-07-01 09:00:00" }
+
+### Eliminar un Instrumento [DELETE]
++ Response 204
+
+
