@@ -18,6 +18,7 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.singular /([rlnd])es([A-Z]|_)([a-z]+)([aeiou])s($)/, '\1\2\3\4\5'
   
   inflect.irregular 'admin', 'admins'
+  inflect.irregular 'token', 'tokens'
 
   # Para evitar errores de pluralización utilizados por formtastic al utilizar i18n
   # (https://github.com/justinfrench/formtastic/blob/master/lib/formtastic.rb#L1850)

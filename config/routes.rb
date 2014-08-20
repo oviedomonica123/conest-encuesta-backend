@@ -1,4 +1,20 @@
 ConestEncuestaBackend::Application.routes.draw do
+  resources :controles_consultas, except: [:new, :edit]
+  resources :carreras, except: [:new, :edit]
+  resources :materias, except: [:new, :edit]
+  resources :periodos_academico, except: [:new, :edit]
+  resources :ofertas_periodo, except: [:new, :edit]
+  resources :docentes, except: [:new, :edit]
+  resources :estudiantes, except: [:new, :edit]
+  resources :ofertas_academica, except: [:new, :edit]
+  resources :tokens, except: [:new, :edit]
+  resources :consultas, except: [:new, :edit]
+  resources :respuestas, except: [:new, :edit]
+  resources :opciones, except: [:new, :edit]
+  resources :tipos_pregunta, except: [:new, :edit]
+  resources :preguntas, except: [:new, :edit]
+  resources :bloques, except: [:new, :edit]
+  resources :instrumentos, except: [:new, :edit]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
